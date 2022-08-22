@@ -1,0 +1,74 @@
+<div class="container">
+  <form [formGroup]="SalaryForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-25"><label for="experience">Experience</label></div>
+      <div class="col-75">
+        <select id="experience" name="experience" formControlName="experience">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11+">11+</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25"><label for="profession">Profession</label></div>
+      <div class="col-75">
+        <select id="profession" name="profession" formControlName="profession">
+          <option value="developer">Developer</option>
+          <option value="teacher">Teacher</option>
+          <option value="cashier">Cashier</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25"><label for="location">Location</label></div>
+      <div class="col-75">
+        <select id="location" name="location" formControlName="location">
+          <option value="stockholm">Stockholm</option>
+          <option value="gothenburg">Gothenburg</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25"><label for="incomeyear">Income Year</label></div>
+      <div class="col-75">
+        <select id="incomeyear" name="incomeyear" formControlName="incomeyear">
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><input class="calculate" (click)="hidePiChart()" type="submit" value="Calculate" /></div>
+    </div>
+    <br />
+  </form>
+  <div class="container">
+    <div class="row my-flex-card" *ngIf="isShown" id="divshow">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>Withholdings</h2>
+            <hr />
+            <h5 class="card-title">Gross Salary:{{ grossSalary }}</h5>
+            <h5 class="card-title">Net Salary:{{ netSalary }}</h5>
+            <h5 class="card-title">Total Tax:{{ totalTax }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body"><canvas id="piChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
