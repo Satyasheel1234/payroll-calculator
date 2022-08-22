@@ -32,8 +32,9 @@
       <div class="col-25"><label for="location">Location</label></div>
       <div class="col-75">
         <select id="location" name="location" formControlName="location">
-          <option value="stockholm">Stockholm</option>
-          <option value="gothenburg">Gothenburg</option>
+          <option *ngFor="let city of locations" value="{{ city.value }}">{{ city.city }}</option>
+          <!-- <option value="stockholm">Stockholm</option>
+          <option value="gothenburg">Gothenburg</option> -->
         </select>
       </div>
     </div>
@@ -46,8 +47,11 @@
         </select>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6"><input class="calculate" (click)="hidePiChart()" type="submit" value="Calculate" /></div>
+    <div class="row" style="margin-top: 1rem;">
+      <div class="col-md-6 col-lg-6">
+      <!-- <button type="submit" class="btn btn-success btn-block btn-space" (click)="hidePiChart()" value="Calculate">Calculate</button> -->
+      <input class="btn btn-success btn-default" (click)="hidePiChart()" type="submit" value="TAX CALCULATOR" />
+    </div>
     </div>
     <br />
   </form>

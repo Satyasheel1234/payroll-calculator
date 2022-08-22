@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { InteropObservable } from "rxjs";
 import { Chart } from "chart.js";
+import { CITY } from "../mock/mock-city";
 
 const percentageCoffecient = 100;
 const incrementPercentForMidLevel = 20;
@@ -34,10 +35,12 @@ export class PayrollCalculaterFormDetailsComponent implements OnInit {
   incomeYear: number;
   PiChart = [];
   isShown: boolean = false;
+  locations = CITY;
 
   constructor() {}
 
   ngOnInit() {
+    console.log("CityName", this.locations);
     this.SalaryForm = new FormGroup({
       experience: new FormControl(1),
       profession: new FormControl("developer"),
@@ -82,23 +85,14 @@ export class PayrollCalculaterFormDetailsComponent implements OnInit {
 
   CalculateSalaryIncrement(workExperience: number, professionData: string): number {
     console.log("Inside calculate Salary", workExperience);
-    let incomeByProfession=this.GetBasicSalaryByProfession(professionData);
+    let incomeByProfession = this.GetBasicSalaryByProfession(professionData);
 
     if (workExperience > 0 && workExperience <= 3) return this.GetBasicSalaryByProfession(professionData) + 0;
     else if (workExperience >= 4 && workExperience <= 7)
-      return (
-        incomeByProfession +
-        (incomeByProfession * incrementPercentForMidLevel) / percentageCoffecient
-      );
+      return incomeByProfession + (incomeByProfession * incrementPercentForMidLevel) / percentageCoffecient;
     else if (workExperience >= 8 && workExperience <= 10)
-      
-    return (
-      incomeByProfession +
-        (incomeByProfession * incrementPercentForSeniorLevel) / percentageCoffecient
-      );
-
-    else     
-      return (incomeByProfession + (incomeByProfession * incrementPercentForManagerLevel) / percentageCoffecient);    
+      return incomeByProfession + (incomeByProfession * incrementPercentForSeniorLevel) / percentageCoffecient;
+    else return incomeByProfession + (incomeByProfession * incrementPercentForManagerLevel) / percentageCoffecient;
   }
 
   GetBasicSalaryByProfession(professionData: string): number {
